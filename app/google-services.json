@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871453709784",
+    "project_id": "barbeariasenai",
+    "storage_bucket": "barbeariasenai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871453709784:android:9443a6cbab010afc5c4ead",
+        "android_client_info": {
+          "package_name": "com.example.siterr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4iWctPSK4FGiigdb83zLXvyZLe1buipc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
