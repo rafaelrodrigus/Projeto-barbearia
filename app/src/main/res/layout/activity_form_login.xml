@@ -32,6 +32,7 @@
         style="@style/Edit_Text"
         android:hint="Email"
         android:drawableRight="@drawable/ice_email"
+        android:textColor="@color/black"
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"

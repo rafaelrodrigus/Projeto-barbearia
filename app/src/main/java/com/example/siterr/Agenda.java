@@ -34,6 +34,7 @@ public class Agenda extends AppCompatActivity {
         appCompatButtonPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 TelaPrincipal();
             }
         });
@@ -49,7 +50,7 @@ public class Agenda extends AppCompatActivity {
     private void TelaPrincipal() {
         Intent intent = new Intent(Agenda.this, TelaPrincipal.class);
         startActivity(intent);
-        finish();
+//        finish();
     }
     public void botaoVoltar(View v) {
         Intent i = new Intent(getApplicationContext(), FormLogin.class);

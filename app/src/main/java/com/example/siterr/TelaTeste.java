@@ -30,7 +30,7 @@ public class TelaTeste extends AppCompatActivity {
     private CheckBox checkBoxCorte, checkBoxBarba, checkBoxHidratacao, checkBoxLavagemCabelo;
     private Button buttonAgendar;
 
-    String usuarioID;
+    String usuarioID, edit_nome;
 
     // Lista para armazenar os horários já agendados
     private List<String> horariosAgendados = new ArrayList<>();
@@ -198,23 +198,22 @@ public class TelaTeste extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Nome do usuário definido com sucesso
                             // Continue com a lógica para salvar dados no Firestore
-                            String nomeUsuario = currentUser.getDisplayName();
 
                             // Criando um mapa para armazenar os dados
                             Map<String, Object> dadosAgendamento = new HashMap<>();
-                            dadosAgendamento.put("nomeUsuario", nomeUsuario);
-                            dadosAgendamento.put("nomeDoBarbeiro", nomeDoBarbeiro);
-                            dadosAgendamento.put("horario", horarioSelecionado);
-                            dadosAgendamento.put("valorTotal", valorTotal);
+                            dadosAgendamento.put("IdUsuario", usuarioID);
+                            dadosAgendamento.put("NomeDoBarbeiro", nomeDoBarbeiro);
+                            dadosAgendamento.put("Horario", horarioSelecionado);
+                            dadosAgendamento.put("ValorTotal", valorTotal);
 
                             // Adicionando outros campos necessários (serviços, etc.)
-                            dadosAgendamento.put("corte", checkBoxCorte.isChecked());
-                            dadosAgendamento.put("barba", checkBoxBarba.isChecked());
-                            dadosAgendamento.put("hidratacao", checkBoxHidratacao.isChecked());
-                            dadosAgendamento.put("lavagemCabelo", checkBoxLavagemCabelo.isChecked());
+                            dadosAgendamento.put("Corte", checkBoxCorte.isChecked());
+                            dadosAgendamento.put("Barba", checkBoxBarba.isChecked());
+                            dadosAgendamento.put("Hidratacao", checkBoxHidratacao.isChecked());
+                            dadosAgendamento.put("LavagemdeCabelo", checkBoxLavagemCabelo.isChecked());
 
-                            // Criando uma referência ao documento do usuário no Firestore
-                            DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+                            // Criando uma referência ao documento do Agendamentos no Firestore
+                            DocumentReference documentReference = db.collection("Agendamentos").document();
 
                             // Salvando os dados no Firestore
                             documentReference.set(dadosAgendamento)

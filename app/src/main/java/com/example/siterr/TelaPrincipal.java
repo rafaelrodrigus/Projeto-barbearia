@@ -28,7 +28,7 @@ public class TelaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         IniciarComponentes();
 
         bt_deslogar.setOnClickListener(new View.OnClickListener() {
@@ -68,3 +68,4 @@ public class TelaPrincipal extends AppCompatActivity {
         bt_deslogar = findViewById(R.id.bt_deslogar);
     }
 }
+//finalmenteeeeeeeeeeeeeeeeeeeeeeee
