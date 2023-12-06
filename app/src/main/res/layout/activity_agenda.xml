@@ -51,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -59,45 +60,51 @@
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="91dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109"
+        tools:ignore="MissingConstraints" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButton"
         style="@style/Button"
-        android:layout_marginTop="444dp"
         android:text="Agendar"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
 
     <androidx.appcompat.widget.AppCompatButton
 
         android:id="@+id/appCompatButtonPerfil"
         style="@style/Button"
+        android:layout_marginTop="8dp"
         android:text="Perfil"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="605dp"
-        app:layout_constraintTop_toBottomOf="@id/appCompatButton" />
-    />
+        app:layout_constraintTop_toBottomOf="@id/appCompatButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/cortedecabelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Corte de Cabelo"
+        android:text="Corte de Cabelo - 15R$"
         android:textColor="@color/white"
         android:textSize="15dp"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="289dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406"
         tools:ignore="MissingConstraints" />
-
-
 
     <TextView
         android:id="@+id/Lavagem"
@@ -106,9 +113,14 @@
         android:text="Lavagem de Cabelo"
         android:textColor="@color/white"
         android:textSize="15dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="241dp"
-        tools:layout_editor_absoluteY="289dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406"
+        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/BemVindo"
@@ -118,20 +130,27 @@
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/cortedebaraba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Corte de Barba"
+        android:layout_width="135dp"
+        android:layout_height="28dp"
+        android:text="Corte de Barba - 5R$"
         android:textColor="@color/white"
         android:textSize="15dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="469dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/hidratacaodecabelo"
@@ -140,11 +159,27 @@
         android:text="Hidratação"
         android:textColor="@color/white"
         android:textSize="15dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="469dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.652"
+        tools:ignore="MissingConstraints" />
 
-
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="botaoVoltar"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerComponents"
+        tools:ignore="MissingConstraints,NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

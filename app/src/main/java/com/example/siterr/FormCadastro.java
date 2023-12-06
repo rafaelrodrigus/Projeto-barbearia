@@ -3,6 +3,7 @@ package com.example.siterr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -26,14 +26,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome, edit_email, edit_senha;
-    private Button bt_cadastrar;
+    private Button bt_cadastrar, bt_voltar;
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class FormCadastro extends AppCompatActivity {
         edit_email = findViewById(R.id.edit_email);
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
+        bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void CadastrarUsuario(View v) {
@@ -127,5 +129,9 @@ public class FormCadastro extends AppCompatActivity {
         snackbar.setBackgroundTint(Color.WHITE);
         snackbar.setTextColor(Color.BLACK);
         snackbar.show();
+    }
+
+    public void botaoVoltar(View v) {
+        finish();
     }
 }

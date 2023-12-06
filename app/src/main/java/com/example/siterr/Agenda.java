@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Agenda extends AppCompatActivity {
 
-    private Button appCompatButton;
+    private Button appCompatButton, butaovoltar;
     private Button appCompatButtonPerfil;
 
     @Override
@@ -17,6 +17,7 @@ public class Agenda extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
+        butaovoltar = findViewById(R.id.bt_voltar);
         appCompatButton = findViewById(R.id.appCompatButton);
         appCompatButtonPerfil = findViewById(R.id.appCompatButtonPerfil);
 
@@ -50,4 +51,10 @@ public class Agenda extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void botaoVoltar(View v) {
+        Intent i = new Intent(getApplicationContext(), FormLogin.class);
+        startActivity(i);
+    }
+
+
 }
