@@ -10,15 +10,36 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.ArrayList;
 import java.util.Calendar;
-import androidx.cardview.widget.CardView;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TelaTeste extends AppCompatActivity {
 
     private DatePicker datePicker;
     private TimePicker timePicker;
     private CheckBox checkBoxBarbeiro1, checkBoxBarbeiro2, checkBoxBarbeiro3;
+    private CheckBox checkBoxCorte, checkBoxBarba, checkBoxHidratacao, checkBoxLavagemCabelo;
     private Button buttonAgendar;
+
+    String usuarioID;
+
+    // Lista para armazenar os horários já agendados
+    private List<String> horariosAgendados = new ArrayList<>();
+
+    // Novos valores dos serviços
+    private static final double VALOR_CORTE = 20.0;
+    private static final double VALOR_BARBA = 5.0;
+    private static final double VALOR_HIDRATACAO = 25.0;
+    private static final double VALOR_LAVAGEM_CABELO = 10.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +52,10 @@ public class TelaTeste extends AppCompatActivity {
         checkBoxBarbeiro1 = findViewById(R.id.bambeiro1);
         checkBoxBarbeiro2 = findViewById(R.id.bambeiro2);
         checkBoxBarbeiro3 = findViewById(R.id.bambeiro3);
+        checkBoxCorte = findViewById(R.id.Corte);
+        checkBoxBarba = findViewById(R.id.Barba);
+        checkBoxHidratacao = findViewById(R.id.Hidratação);
+        checkBoxLavagemCabelo = findViewById(R.id.lavagemCabelo);
         buttonAgendar = findViewById(R.id.btAgendar);
 
         // Adicionando um listener ao botão de agendar
@@ -51,49 +76,161 @@ public class TelaTeste extends AppCompatActivity {
 
                 Calendar currentDateTime = Calendar.getInstance();
 
+                // Verificar se a data e hora selecionadas já passaram
                 if (selectedDateTime.before(currentDateTime)) {
                     // Exibir mensagem de erro
                     Toast.makeText(TelaTeste.this, "Selecione uma data e hora futuras", Toast.LENGTH_SHORT).show();
                     return; // Impede a continuação do processo de agendamento
                 }
 
-                // Verificar quantos barbeiros foram selecionados
-                int selectedCount = 0;
-
-                if (checkBoxBarbeiro1.isChecked()) {
-                    selectedCount++;
-                }
-                if (checkBoxBarbeiro2.isChecked()) {
-                    selectedCount++;
-                }
-                if (checkBoxBarbeiro3.isChecked()) {
-                    selectedCount++;
-                }
-
-                // Verificar se mais de um barbeiro foi selecionado
-                if (selectedCount != 1) {
+                // Verificar se o horário está dentro do intervalo permitido (8h às 18h)
+                if (hour < 8 || hour >= 18) {
                     // Exibir mensagem de erro
-                    Toast.makeText(TelaTeste.this, "Por favor, selecione exatamente um barbeiro", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaTeste.this, "Os agendamentos só são permitidos entre 8h e 18h", Toast.LENGTH_SHORT).show();
                     return; // Impede a continuação do processo de agendamento
                 }
 
-                // Determinar qual barbeiro foi selecionado
-                String selectedBarbeiro = "";
-                if (checkBoxBarbeiro1.isChecked()) {
-                    selectedBarbeiro = "Negueba";
-                } else if (checkBoxBarbeiro2.isChecked()) {
-                    selectedBarbeiro = "Felipe Souza";
-                } else if (checkBoxBarbeiro3.isChecked()) {
-                    selectedBarbeiro = "Monza";
+                // Verificar qual barbeiro foi selecionado
+                String nomeDoBarbeiro = getNomeBarbeiroSelecionado();
+
+                // Verificar se apenas um barbeiro foi selecionado
+                if (!validarSelecaoBarbeiro()) {
+                    // Exibir mensagem de erro
+                    Toast.makeText(TelaTeste.this, "Selecione exatamente um barbeiro", Toast.LENGTH_SHORT).show();
+                    return; // Impede a continuação do processo de agendamento
                 }
 
-                // Exibir uma mensagem com os detalhes do agendamento
-                String message = "Agendamento:\nData: " + day + "/" + (month + 1) + "/" + year +
-                        "\nHora: " + hour + ":" + minute +
-                        "\nBarbeiro: " + selectedBarbeiro;
+                // Verificar se pelo menos um serviço foi selecionado
+                if (!checkBoxCorte.isChecked() && !checkBoxBarba.isChecked() &&
+                        !checkBoxHidratacao.isChecked() && !checkBoxLavagemCabelo.isChecked()) {
+                    // Exibir mensagem de erro
+                    Toast.makeText(TelaTeste.this, "Por favor, selecione pelo menos um serviço", Toast.LENGTH_SHORT).show();
+                    return; // Impede a continuação do processo de agendamento
+                }
 
-                Toast.makeText(TelaTeste.this, message, Toast.LENGTH_SHORT).show();
+                // Construir uma representação do horário selecionado
+                String horarioSelecionado = day + "/" + (month + 1) + "/" + year + " " + hour + ":" + minute;
+
+                // Verificar se o horário já foi agendado
+                if (horariosAgendados.contains(horarioSelecionado)) {
+                    // Exibir mensagem de erro
+                    Toast.makeText(TelaTeste.this, "Este horário já foi agendado", Toast.LENGTH_SHORT).show();
+                    return; // Impede a continuação do processo de agendamento
+                }
+
+                // Adicionar o horário à lista de horários agendados
+                horariosAgendados.add(horarioSelecionado);
+
+                // Calcular o valor total
+                double valorTotal = calcularValorTotal();
+
+                // Salvar dados no Firestore
+                salvarDadosNoFirestore(nomeDoBarbeiro, horarioSelecionado, valorTotal);
             }
         });
+    }
+
+    // Método para verificar qual barbeiro foi selecionado
+    private String getNomeBarbeiroSelecionado() {
+        if (checkBoxBarbeiro1.isChecked()) {
+            return "Negueba";
+        } else if (checkBoxBarbeiro2.isChecked()) {
+            return "Felipe Souza";
+        } else if (checkBoxBarbeiro3.isChecked()) {
+            return "Monza";
+        }
+        return "";
+    }
+
+    // Método para validar a seleção de barbeiros
+    private boolean validarSelecaoBarbeiro() {
+        int count = 0;
+
+        if (checkBoxBarbeiro1.isChecked()) {
+            count++;
+        }
+        if (checkBoxBarbeiro2.isChecked()) {
+            count++;
+        }
+        if (checkBoxBarbeiro3.isChecked()) {
+            count++;
+        }
+
+        return count == 1;
+    }
+
+    // Método para calcular o valor total dos serviços
+    private double calcularValorTotal() {
+        double valorTotal = 0.0;
+
+        if (checkBoxCorte.isChecked()) {
+            valorTotal += VALOR_CORTE;
+        }
+        if (checkBoxBarba.isChecked()) {
+            valorTotal += VALOR_BARBA;
+        }
+        if (checkBoxHidratacao.isChecked()) {
+            valorTotal += VALOR_HIDRATACAO;
+        }
+        if (checkBoxLavagemCabelo.isChecked()) {
+            valorTotal += VALOR_LAVAGEM_CABELO;
+        }
+
+        return valorTotal;
+    }
+
+    // Método para salvar os dados no Firestore
+    private void salvarDadosNoFirestore(String nomeDoBarbeiro, String horarioSelecionado, double valorTotal) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Obtendo o ID do usuário e o nome do usuário
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            usuarioID = currentUser.getUid();
+
+            // Definir o nome do usuário
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName("Nome do Usuário")
+                    .build();
+
+            currentUser.updateProfile(profileUpdates)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Nome do usuário definido com sucesso
+                            // Continue com a lógica para salvar dados no Firestore
+                            String nomeUsuario = currentUser.getDisplayName();
+
+                            // Criando um mapa para armazenar os dados
+                            Map<String, Object> dadosAgendamento = new HashMap<>();
+                            dadosAgendamento.put("nomeUsuario", nomeUsuario);
+                            dadosAgendamento.put("nomeDoBarbeiro", nomeDoBarbeiro);
+                            dadosAgendamento.put("horario", horarioSelecionado);
+                            dadosAgendamento.put("valorTotal", valorTotal);
+
+                            // Adicionando outros campos necessários (serviços, etc.)
+                            dadosAgendamento.put("corte", checkBoxCorte.isChecked());
+                            dadosAgendamento.put("barba", checkBoxBarba.isChecked());
+                            dadosAgendamento.put("hidratacao", checkBoxHidratacao.isChecked());
+                            dadosAgendamento.put("lavagemCabelo", checkBoxLavagemCabelo.isChecked());
+
+                            // Criando uma referência ao documento do usuário no Firestore
+                            DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+
+                            // Salvando os dados no Firestore
+                            documentReference.set(dadosAgendamento)
+                                    .addOnSuccessListener(Void -> {
+                                        // Se a gravação for bem-sucedida, você pode adicionar lógica aqui
+                                        Toast.makeText(TelaTeste.this, "Agendamento salvo com sucesso! Valor total: R$" + valorTotal, Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Se a gravação falhar, você pode adicionar lógica aqui
+                                        Toast.makeText(TelaTeste.this, "Erro ao salvar agendamento", Toast.LENGTH_SHORT).show();
+                                    });
+                        }
+                    });
+        } else {
+            // O usuário não está autenticado, adicione lógica de tratamento de erro se necessário
+            Toast.makeText(TelaTeste.this, "Erro: Usuário não autenticado", Toast.LENGTH_SHORT).show();
+        }
     }
 }

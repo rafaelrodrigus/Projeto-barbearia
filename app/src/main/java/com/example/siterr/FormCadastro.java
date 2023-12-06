@@ -2,6 +2,7 @@ package com.example.siterr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class FormCadastro extends AppCompatActivity {
                 String nome = edit_nome.getText().toString();
                 String email = edit_email.getText().toString();
                 String senha = edit_senha.getText().toString();
+
 
                 if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                     exibirSnackbar(v, mensagens[0]);
