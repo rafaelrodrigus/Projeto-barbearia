@@ -1,11 +1,13 @@
 package com.example.siterr;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -21,7 +23,6 @@ public class FormLogin extends AppCompatActivity {
     private TextView text_tela_cadastro;
     private Button bt_entrar;
     private EditText edit_email, edit_senha;
-
     private ProgressBar progressBar;
 
     String[] mensagens = {"Preencha todos os campos", "Login efetuado com sucesso"};
@@ -30,31 +31,19 @@ public class FormLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_login);
-
         IniciarComponentes();
 
-        text_tela_cadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormLogin.this, FormCadastro.class);
-                startActivity(intent);
-            }
-        });
+        text_tela_cadastro.setOnClickListener(v -> abrirTelaCadastro());
 
-        bt_entrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = edit_email.getText().toString();
-                String senha = edit_senha.getText().toString();
+        bt_entrar.setOnClickListener(v -> {
+            String email = edit_email.getText().toString();
+            String senha = edit_senha.getText().toString();
 
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
-                    Snackbar snackbar = Snackbar.make(v, mensagens[0], Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.WHITE);
-                    snackbar.setTextColor(Color.BLACK);
-                    snackbar.show();
-                } else {
-                    AutenticarUsuario(email, senha);
-                }
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
+                exibirSnackbar(v, mensagens[0], Color.WHITE, Color.BLACK);
+            } else {
+                AutenticarUsuario(email, senha);
+                esconderTeclado();
             }
         });
     }
@@ -66,18 +55,17 @@ public class FormLogin extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         new Handler().postDelayed(this::agenda, 1500);
                     } else {
-                        exibirSnackbar("Erro ao efetuar login", Color.RED);
+                        exibirSnackbar(findViewById(android.R.id.content), "Erro ao efetuar login", Color.RED);
                     }
                 });
     }
 
-    private void exibirSnackbar(String mensagem, int corFundo) {
-        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), mensagem, Snackbar.LENGTH_SHORT);
+    private void exibirSnackbar(View view, String mensagem, int corFundo, int corTexto) {
+        Snackbar snackbar = Snackbar.make(view, mensagem, Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(corFundo);
-        snackbar.setTextColor(Color.WHITE);
+        snackbar.setTextColor(corTexto);
         snackbar.show();
     }
-
 
     private void agenda() {
         Intent intent = new Intent(FormLogin.this, TelaMenuServico.class);
@@ -92,5 +80,24 @@ public class FormLogin extends AppCompatActivity {
         edit_senha = findViewById(R.id.edit_senha);
         progressBar = findViewById(R.id.progressbar);
     }
-    //att
+
+    private void esconderTeclado() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void abrirTelaCadastro() {
+        Intent intent = new Intent(FormLogin.this, FormCadastro.class);
+        startActivity(intent);
+    }
+    private void exibirSnackbar(View view, String mensagem, int corFundo) {
+        Snackbar snackbar = Snackbar.make(view, mensagem, Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(corFundo);
+        snackbar.setTextColor(Color.WHITE);  // Adicionei a cor branca como padrão para o texto
+        snackbar.show();
+    }
+
 }

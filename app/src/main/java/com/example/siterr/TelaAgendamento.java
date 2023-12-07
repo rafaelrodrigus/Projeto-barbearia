@@ -291,6 +291,11 @@ public class TelaAgendamento extends AppCompatActivity {
             Toast.makeText(TelaAgendamento.this, "Erro: Usuário não autenticado", Toast.LENGTH_SHORT).show();
         }
     }
-    // Método para salvar os dados no Firestore
-    }
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
+            }
+
+
+
+    // Método para salvar os dados no Firestore  kkkkkk

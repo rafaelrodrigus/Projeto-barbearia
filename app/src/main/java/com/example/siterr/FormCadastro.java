@@ -2,7 +2,6 @@ package com.example.siterr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,8 +34,6 @@ public class FormCadastro extends AppCompatActivity {
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +47,6 @@ public class FormCadastro extends AppCompatActivity {
                 String nome = edit_nome.getText().toString();
                 String email = edit_email.getText().toString();
                 String senha = edit_senha.getText().toString();
-
 
                 if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                     exibirSnackbar(v, mensagens[0]);
@@ -77,10 +73,9 @@ public class FormCadastro extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
-                    SalvardadosUsuario();
-
+                    SalvarDadosUsuario();
                     exibirSnackbar(v, mensagens[1]);
+                    abrirTelaLogin();
                 } else {
                     String erro;
                     try {
@@ -100,13 +95,13 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
 
-    private  void SalvardadosUsuario(){
+    private void SalvarDadosUsuario() {
         String nome = edit_nome.getText().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> usuarios = new HashMap<>();
-        usuarios.put("nome",nome);
+        usuarios.put("nome", nome);
 
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -114,16 +109,20 @@ public class FormCadastro extends AppCompatActivity {
         documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("db","Sucesso ao salvar os dados");
+                Log.d("db", "Sucesso ao salvar os dados");
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("db error","Erro ao salvar os dados" + e.toString());
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("db error", "Erro ao salvar os dados" + e.toString());
+            }
+        });
+    }
 
-                    }
-                });
+    private void abrirTelaLogin() {
+        Intent intent = new Intent(FormCadastro.this, FormLogin.class);
+        startActivity(intent);
+        finish(); // Para encerrar a atividade atual e impedir que o usuário volte usando o botão de retorno
     }
 
     private void exibirSnackbar(View view, String mensagem) {
