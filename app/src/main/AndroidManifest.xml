@@ -19,13 +19,13 @@
             android:name=".FormCadastro"
             android:exported="false" />
         <activity
-            android:name=".Agenda"
+            android:name=".TelaMenuServico"
             android:exported="false" />
         <activity
-            android:name=".TelaPrincipal"
+            android:name=".TelaPerfil"
             android:exported="false" />
         <activity
-            android:name=".TelaTeste"
+            android:name=".TelaAgendamento"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

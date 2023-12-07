@@ -15,9 +15,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.ktx.Firebase;
 
-public class TelaPrincipal extends AppCompatActivity {
+public class TelaPerfil extends AppCompatActivity {
 
     private TextView nomeUsuario, emailUsuario;
     private Button bt_deslogar;
@@ -26,7 +25,7 @@ public class TelaPrincipal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_principal);
+        setContentView(R.layout.activity_tela_perfil);
 
 //        getSupportActionBar().hide();
         IniciarComponentes();
@@ -35,7 +34,7 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(TelaPrincipal.this, FormLogin.class);
+                Intent i = new Intent(TelaPerfil.this, FormLogin.class);
                 startActivity(i);
                 finish();
             }

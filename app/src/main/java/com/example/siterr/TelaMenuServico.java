@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Agenda extends AppCompatActivity {
+public class TelaMenuServico extends AppCompatActivity {
 
     private Button appCompatButton, butaovoltar;
     private Button appCompatButtonPerfil;
@@ -15,7 +15,7 @@ public class Agenda extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agenda);
+        setContentView(R.layout.activity_menu_servico);
 
         butaovoltar = findViewById(R.id.bt_voltar);
         appCompatButton = findViewById(R.id.appCompatButton);
@@ -25,12 +25,12 @@ public class Agenda extends AppCompatActivity {
         appCompatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chamar o método TelaTeste quando o botão for clicado
+                // Chamar o método TelaAgendamento quando o botão for clicado
                 TelaTeste();
             }
         });
 
-        // Configurar o clique do botãoPerfil para ir para a TelaPrincipal
+        // Configurar o clique do botãoPerfil para ir para a TelaPerfil
         appCompatButtonPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,15 +40,15 @@ public class Agenda extends AppCompatActivity {
         });
     }
 
-    // Método separado TelaTeste
+    // Método separado TelaAgendamento
     private void TelaTeste() {
-        Intent intent = new Intent(Agenda.this, TelaTeste.class);
+        Intent intent = new Intent(TelaMenuServico.this, TelaAgendamento.class);
         startActivity(intent);
         finish();
     }
 
     private void TelaPrincipal() {
-        Intent intent = new Intent(Agenda.this, TelaPrincipal.class);
+        Intent intent = new Intent(TelaMenuServico.this, TelaPerfil.class);
         startActivity(intent);
 //        finish();
     }

@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FFB344</color>
-    <color name="pink">#FB528B</color>
-    <color name="pink_light">#F899B9</color>
+    <color name="blue">#405AE6</color>
+    <color name="pink_light">#373233</color>
     <color name="midnightblue">#2C3E50</color>
     <color name="alizarin">#ADEAE4E2</color>
 </resources>

@@ -11,11 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FormLogin extends AppCompatActivity {
@@ -66,7 +64,7 @@ public class FormLogin extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         progressBar.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(this::agenda, 3000);
+                        new Handler().postDelayed(this::agenda, 1500);
                     } else {
                         exibirSnackbar("Erro ao efetuar login", Color.RED);
                     }
@@ -82,7 +80,7 @@ public class FormLogin extends AppCompatActivity {
 
 
     private void agenda() {
-        Intent intent = new Intent(FormLogin.this, Agenda.class);
+        Intent intent = new Intent(FormLogin.this, TelaMenuServico.class);
         startActivity(intent);
         finish();
     }
@@ -94,4 +92,5 @@ public class FormLogin extends AppCompatActivity {
         edit_senha = findViewById(R.id.edit_senha);
         progressBar = findViewById(R.id.progressbar);
     }
+    //att
 }
