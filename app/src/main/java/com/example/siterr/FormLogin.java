@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class FormLogin extends AppCompatActivity {
     private Button bt_entrar;
     private EditText edit_email, edit_senha;
     private ProgressBar progressBar;
+    private CheckBox check_mostrar_senha;
 
     String[] mensagens = {"Preencha todos os campos", "Login efetuado com sucesso"};
 
@@ -40,12 +42,21 @@ public class FormLogin extends AppCompatActivity {
             String senha = edit_senha.getText().toString();
 
             if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
-                exibirSnackbar(v, mensagens[0], Color.WHITE, Color.BLACK);
+                exibirSnackbar(findViewById(android.R.id.content), mensagens[0], Color.WHITE, Color.BLACK);
             } else {
                 AutenticarUsuario(email, senha);
                 esconderTeclado();
             }
         });
+
+        // Adicionado listener para a CheckBox de mostrar senha
+        check_mostrar_senha.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Mostra ou esconde a senha baseado no estado da CheckBox
+            edit_senha.setInputType(isChecked ? 0x90 : 0x81);
+        });
+
+        // Chamando exibirSnackbar dentro do onCreate para mostrar a mensagem inicial
+        exibirSnackbar(findViewById(android.R.id.content), mensagens[0], Color.WHITE, Color.BLACK);
     }
 
     private void AutenticarUsuario(String email, String senha) {
@@ -55,7 +66,7 @@ public class FormLogin extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         new Handler().postDelayed(this::agenda, 1500);
                     } else {
-                        exibirSnackbar(findViewById(android.R.id.content), "Erro ao efetuar login", Color.RED);
+                        exibirSnackbar(findViewById(android.R.id.content), "Erro ao efetuar login", Color.RED, Color.BLACK);
                     }
                 });
     }
@@ -79,6 +90,7 @@ public class FormLogin extends AppCompatActivity {
         edit_email = findViewById(R.id.edit_email);
         edit_senha = findViewById(R.id.edit_senha);
         progressBar = findViewById(R.id.progressbar);
+        check_mostrar_senha = findViewById(R.id.check_mostrar_senha); // Adicionado CheckBox no layout
     }
 
     private void esconderTeclado() {
@@ -93,11 +105,4 @@ public class FormLogin extends AppCompatActivity {
         Intent intent = new Intent(FormLogin.this, FormCadastro.class);
         startActivity(intent);
     }
-    private void exibirSnackbar(View view, String mensagem, int corFundo) {
-        Snackbar snackbar = Snackbar.make(view, mensagem, Snackbar.LENGTH_SHORT);
-        snackbar.setBackgroundTint(corFundo);
-        snackbar.setTextColor(Color.WHITE);  // Adicionei a cor branca como padrão para o texto
-        snackbar.show();
-    }
-
 }
