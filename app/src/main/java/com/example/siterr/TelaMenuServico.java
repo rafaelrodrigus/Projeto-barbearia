@@ -17,7 +17,7 @@ public class TelaMenuServico extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_servico);
 
-        butaovoltar = findViewById(R.id.bt_voltar);
+
         appCompatButton = findViewById(R.id.appCompatButton);
         appCompatButtonPerfil = findViewById(R.id.appCompatButtonPerfil);
 
