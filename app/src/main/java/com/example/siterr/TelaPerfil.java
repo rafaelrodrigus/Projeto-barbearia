@@ -1,8 +1,10 @@
 package com.example.siterr;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,21 +24,19 @@ public class TelaPerfil extends AppCompatActivity {
     private Button bt_deslogar;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_perfil);
 
-//        getSupportActionBar().hide();
+        // getSupportActionBar().hide();
         IniciarComponentes();
 
         bt_deslogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(TelaPerfil.this, FormLogin.class);
-                startActivity(i);
-                finish();
+                mostrarAvisoDeslogar();
             }
         });
     }
@@ -53,7 +53,7 @@ public class TelaPerfil extends AppCompatActivity {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                if(documentSnapshot != null){
+                if (documentSnapshot != null) {
                     nomeUsuario.setText(documentSnapshot.getString("nome"));
                     emailUsuario.setText(email);
                 }
@@ -66,5 +66,30 @@ public class TelaPerfil extends AppCompatActivity {
         emailUsuario = findViewById(R.id.textEmailUsuario);
         bt_deslogar = findViewById(R.id.bt_deslogar);
     }
+
+    private void mostrarAvisoDeslogar() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Tem certeza de que deseja deslogar?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deslogarUsuario();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Não é necessário fazer nada aqui
+                    }
+                })
+                .setCancelable(false) // Impede que o usuário clique fora do diálogo para fechá-lo
+                .show();
+    }
+
+    private void deslogarUsuario() {
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(TelaPerfil.this, FormLogin.class);
+        startActivity(i);
+        finish();
+    }
 }
-//finalmenteeeeeeeeeeeeeeeeeeeeeeee
