@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,10 +31,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome, edit_email, edit_senha;
     private Button bt_cadastrar;
+    private CheckBox check_mostrar_senha;
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
 
@@ -55,6 +61,18 @@ public class FormCadastro extends AppCompatActivity {
                 }
             }
         });
+
+        check_mostrar_senha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Mostra ou esconde a senha baseado no estado da CheckBox
+                if (isChecked) {
+                    edit_senha.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    edit_senha.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
     }
 
     private void IniciarComponentes() {
@@ -62,6 +80,7 @@ public class FormCadastro extends AppCompatActivity {
         edit_email = findViewById(R.id.edit_email);
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
+        check_mostrar_senha = findViewById(R.id.check_mostrar_senha);
     }
 
     private void CadastrarUsuario(View v) {

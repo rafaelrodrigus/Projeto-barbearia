@@ -2,17 +2,17 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
 
     >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/background"
     tools:context=".TelaAgendamento">
@@ -48,7 +48,8 @@
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:textColor="@color/black"
+        android:background="@color/alizarin"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
@@ -72,9 +73,9 @@
         android:id="@+id/timePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:timePickerMode="spinner"
-        />
+        android:textColor="@color/black"
+        android:background="@color/alizarin"
+        android:timePickerMode="spinner" />
 
     <TextView
         android:layout_width="match_parent"
@@ -105,7 +106,7 @@
             android:layout_height="wrap_content"
             android:text="Negueba"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -129,7 +130,7 @@
             android:layout_height="wrap_content"
             android:text="Felipe Souza"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -153,7 +154,7 @@
             android:layout_height="wrap_content"
             android:text="Monza"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -185,7 +186,7 @@
             android:layout_height="wrap_content"
             android:text="Corte de cabelo = 20.00$"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -209,7 +210,7 @@
             android:layout_height="wrap_content"
             android:text="Corte de Barba = 5.00$"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -232,7 +233,7 @@
             android:layout_height="wrap_content"
             android:text="Hidratação = 25.00$"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -256,7 +257,7 @@
             android:layout_height="wrap_content"
             android:text="Lavagem de cabelo = 10.00$"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -269,7 +270,7 @@
         android:layout_height="wrap_content"
         android:text="Agendar"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_margin="40dp"
         />
