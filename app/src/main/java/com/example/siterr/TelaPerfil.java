@@ -39,6 +39,8 @@ public class TelaPerfil extends AppCompatActivity {
                 mostrarAvisoDeslogar();
             }
         });
+
+
     }
 
     @Override

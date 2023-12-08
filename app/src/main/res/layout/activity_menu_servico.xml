@@ -56,11 +56,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:text="Menu de Serviços "
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,13 +68,13 @@
         app:layout_constraintVertical_bias="0.109"
         tools:ignore="MissingConstraints" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButton"
         style="@style/Button"
+        android:layout_marginTop="512dp"
         android:text="Agendar"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.771" />
@@ -85,42 +85,10 @@
         style="@style/Button"
         android:layout_marginTop="8dp"
         android:text="Perfil"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appCompatButton"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/cortedecabelo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Corte de Cabelo - 15R$"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Lavagem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lavagem de Cabelo"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406"
-        tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/BemVindo"
@@ -138,48 +106,62 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/cortedebaraba"
-        android:layout_width="135dp"
-        android:layout_height="28dp"
-        android:text="Corte de Barba - 5R$"
+        android:id="@+id/Cortedecabelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Corte de Cabelo"
         android:textColor="@color/white"
-        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintTop_toBottomOf="@+id/corte"
+        app:layout_constraintVertical_bias="0.002"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/hidratacaodecabelo"
+        android:id="@+id/Lavagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hidratação"
+        android:layout_marginTop="8dp"
+        android:text="Lavagem"
         android:textColor="@color/white"
-        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.652"
+        app:layout_constraintTop_toBottomOf="@+id/lavagem"
+        app:layout_constraintVertical_bias="0.002"
         tools:ignore="MissingConstraints" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_voltar"
+    <TextView
+        android:id="@+id/CortedeBarba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="4dp"
-        android:onClick="botaoVoltar"
-        android:text="Voltar"
+        android:text="Corte de Barba"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerComponents"
-        tools:ignore="MissingConstraints,NotSibling" />
+        app:layout_constraintTop_toBottomOf="@+id/barba"
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Hidratacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Hidratação"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hidratacao"
+        app:layout_constraintVertical_bias="0.007"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
