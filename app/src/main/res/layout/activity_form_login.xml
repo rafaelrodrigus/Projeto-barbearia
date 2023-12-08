@@ -91,8 +91,12 @@
         android:text="Barbearia Senai"
         android:textColor="@color/white"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
         tools:ignore="MissingConstraints" />
 
 

@@ -76,12 +76,13 @@
         app:layout_constraintStart_toEndOf="@id/iconeEmail"
         app:layout_constraintTop_toBottomOf="@id/text_nomeUsuario" />
 
+
     <Button
         android:id="@+id/bt_deslogar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/black"
         android:padding="20dp"
         android:text="Deslogar"
@@ -90,6 +91,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/textEmailUsuario"
-        tools:layout_editor_absoluteX="24dp"
-        tools:ignore="InvalidId" />
+        tools:ignore="InvalidId"
+        tools:layout_editor_absoluteX="20dp" />
+
+    ]felie
 </androidx.constraintlayout.widget.ConstraintLayout>

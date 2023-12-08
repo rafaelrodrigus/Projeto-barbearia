@@ -30,7 +30,7 @@ import java.util.Map;
 public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome, edit_email, edit_senha;
-    private Button bt_cadastrar, bt_voltar;
+    private Button bt_cadastrar;
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
 
@@ -62,7 +62,6 @@ public class FormCadastro extends AppCompatActivity {
         edit_email = findViewById(R.id.edit_email);
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
-        bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void CadastrarUsuario(View v) {
