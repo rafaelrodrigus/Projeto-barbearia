@@ -63,6 +63,10 @@ public class TelaAgendamento extends AppCompatActivity {
         buttonAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intentMostrarAgendamento = new Intent(TelaAgendamento.this, TelaMostrarAgendamento.class);
+                startActivity(intentMostrarAgendamento);
+                finish(); // Opcional: Fechar a atividade de agendamento para que o usuário não possa voltar usando o botão de retorno
+
                 // Obter data e hora selecionadas
                 int day = datePicker.getDayOfMonth();
                 int month = datePicker.getMonth();
