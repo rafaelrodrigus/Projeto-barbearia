@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/purple_700"> <!-- Cor de fundo azul -->
+
+    <TextView
+        android:id="@+id/textViewDetalhesAgendamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalhes do Agendamento"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:textColor="#ffffff"/> <!-- Cor de texto branca -->
+
+    <!-- Adicione um LinearLayout vertical para organizar as TextViews -->
+    <LinearLayout
+        android:id="@+id/linearLayoutDetalhes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/textViewDetalhesAgendamento"
+        android:layout_marginTop="16dp">
+
+        <!-- Exemplo de TextView para mostrar a data -->
+        <TextView
+            android:id="@+id/textViewData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data: XX/XX/XXXX"
+            android:layout_gravity="center_vertical"
+            android:textColor="#ffffff"/> <!-- Cor de texto branca -->
+
+        <!-- Exemplo de TextView para mostrar a hora -->
+        <TextView
+            android:id="@+id/textViewHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora: XX:XX"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:textColor="#ffffff"/> <!-- Cor de texto branca -->
+
+        <!-- Adicione mais TextViews para outros detalhes do agendamento -->
+
+    </LinearLayout>
+
+    <!-- Adicione um botão de cancelamento -->
+    <Button
+        android:id="@+id/buttonCancelarAgendamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar Agendamento"
+        android:layout_below="@id/linearLayoutDetalhes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>
