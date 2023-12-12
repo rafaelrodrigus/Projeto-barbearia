@@ -73,8 +73,8 @@
         android:id="@+id/timePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:background="@color/alizarin"
+        android:textColor="@color/black"
         android:timePickerMode="spinner" />
 
     <TextView
@@ -263,18 +263,36 @@
     </LinearLayout>
 
 
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btAgendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Agendar"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+        style="@style/Button"
+        android:layout_width="320dp"
+        android:layout_height="78dp"
         android:layout_margin="40dp"
-        />
+        android:text="Agendar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btAgendar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="DuplicateIds" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_Voltar"
+        style="@style/Button"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="28dp"
+        android:onClick="botaoVoltar"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btAgendar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="DuplicateIds" />
 
 
 </LinearLayout>

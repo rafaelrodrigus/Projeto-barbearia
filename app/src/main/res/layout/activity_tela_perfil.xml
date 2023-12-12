@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="88dp"
         android:backgroundTint="@color/black"
         android:padding="20dp"
         android:text="Deslogar"
@@ -92,7 +92,48 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/textEmailUsuario"
         tools:ignore="InvalidId"
-        tools:layout_editor_absoluteX="20dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
-    ]felie
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_Voltar"
+        style="@style/Button"
+        android:layout_width="236dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="28dp"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cancelar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="DuplicateIds" />
+
+    <ImageView
+        android:layout_width="37dp"
+        android:layout_height="26dp"
+        android:src="@drawable/wats"
+        app:layout_constraintBottom_toBottomOf="@id/cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.983"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/cancelar"
+        android:layout_width="395dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="32dp"
+        android:text="Em caso de cancelamento de agendamento entre em contato:  75 8280-2772"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_deslogar"
+        app:layout_constraintVertical_bias="0.016"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

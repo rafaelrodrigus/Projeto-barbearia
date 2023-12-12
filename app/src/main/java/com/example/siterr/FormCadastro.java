@@ -35,7 +35,7 @@ import java.util.Map;
 public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome, edit_email, edit_senha;
-    private Button bt_cadastrar;
+    private Button bt_cadastrar, bt_volar;
     private CheckBox check_mostrar_senha;
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
@@ -80,6 +80,7 @@ public class FormCadastro extends AppCompatActivity {
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
         check_mostrar_senha = findViewById(R.id.check_mostrar_senha);
+        bt_volar = findViewById(R.id.bt_Voltar);
     }
 
     private void CadastrarUsuario(View v) {
@@ -150,6 +151,8 @@ public class FormCadastro extends AppCompatActivity {
     }
 
     public void botaoVoltar(View v) {
+        Intent intent = new Intent(FormCadastro.this, FormLogin.class);
+        startActivity(intent);
         finish();
     }
 }
