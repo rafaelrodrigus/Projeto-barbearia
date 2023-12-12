@@ -65,7 +65,6 @@ public class FormCadastro extends AppCompatActivity {
         check_mostrar_senha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Mostra ou esconde a senha baseado no estado da CheckBox
                 if (isChecked) {
                     edit_senha.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
