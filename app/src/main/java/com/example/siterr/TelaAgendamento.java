@@ -1,5 +1,6 @@
 package com.example.siterr;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +30,7 @@ public class TelaAgendamento extends AppCompatActivity {
     private TimePicker timePicker;
     private CheckBox checkBoxBarbeiro1, checkBoxBarbeiro2, checkBoxBarbeiro3;
     private CheckBox checkBoxCorte, checkBoxBarba, checkBoxHidratacao, checkBoxLavagemCabelo;
-    private Button buttonAgendar;
+    private Button buttonAgendar, bt_voltar;
 
     String usuarioID, edit_nome;
 
@@ -42,6 +43,7 @@ public class TelaAgendamento extends AppCompatActivity {
     private static final double VALOR_HIDRATACAO = 25.0;
     private static final double VALOR_LAVAGEM_CABELO = 10.0;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class TelaAgendamento extends AppCompatActivity {
         checkBoxHidratacao = findViewById(R.id.Hidratação);
         checkBoxLavagemCabelo = findViewById(R.id.lavagemCabelo);
         buttonAgendar = findViewById(R.id.btAgendar);
-
+        bt_voltar = findViewById(R.id.bt_Voltar);
 
         buttonAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +129,7 @@ public class TelaAgendamento extends AppCompatActivity {
                 double valorTotal = calcularValorTotal();
 
 
-                salvarDadosNoFirestore(nomeDoBarbeiro, horarioSelecionado, valorTotal);
+
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -186,6 +188,8 @@ public class TelaAgendamento extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
 
@@ -236,7 +240,11 @@ public class TelaAgendamento extends AppCompatActivity {
 
         return valorTotal;
     }
-
+    public void botaoVoltar(View v) {
+        Intent intent = new Intent(TelaAgendamento.this, TelaMenuServico.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void salvarDadosNoFirestore(String nomeDoBarbeiro, String horarioSelecionado, double valorTotal) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -296,4 +304,4 @@ public class TelaAgendamento extends AppCompatActivity {
 
 
 
-    // Autores Rafael, Felipe, Moises, Wenes, João Marcos
+
