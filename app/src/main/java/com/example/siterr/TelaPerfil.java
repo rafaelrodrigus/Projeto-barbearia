@@ -30,7 +30,7 @@ public class TelaPerfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_perfil);
 
-        // getSupportActionBar().hide();
+
         IniciarComponentes();
 
         bt_deslogar.setOnClickListener(new View.OnClickListener() {
@@ -81,10 +81,10 @@ public class TelaPerfil extends AppCompatActivity {
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Não é necessário fazer nada aqui
+
                     }
                 })
-                .setCancelable(false) // Impede que o usuário clique fora do diálogo para fechá-lo
+                .setCancelable(false)
                 .show();
     }
 

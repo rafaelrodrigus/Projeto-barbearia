@@ -21,16 +21,16 @@ public class TelaMenuServico extends AppCompatActivity {
         appCompatButton = findViewById(R.id.appCompatButton);
         appCompatButtonPerfil = findViewById(R.id.appCompatButtonPerfil);
 
-        // Configurar o clique do botão
+
         appCompatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chamar o método TelaAgendamento quando o botão for clicado
+
                 TelaTeste();
             }
         });
 
-        // Configurar o clique do botãoPerfil para ir para a TelaPerfil
+
         appCompatButtonPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +40,7 @@ public class TelaMenuServico extends AppCompatActivity {
         });
     }
 
-    // Método separado TelaAgendamento
+
     private void TelaTeste() {
         Intent intent = new Intent(TelaMenuServico.this, TelaAgendamento.class);
         startActivity(intent);

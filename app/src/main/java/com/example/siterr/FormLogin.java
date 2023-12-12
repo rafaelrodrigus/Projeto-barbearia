@@ -49,13 +49,13 @@ public class FormLogin extends AppCompatActivity {
             }
         });
 
-        // Adicionado listener para a CheckBox de mostrar senha
+
         check_mostrar_senha.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Mostra ou esconde a senha baseado no estado da CheckBox
+
             edit_senha.setInputType(isChecked ? 0x90 : 0x81);
         });
 
-        // Chamando exibirSnackbar dentro do onCreate para mostrar a mensagem inicial
+
         exibirSnackbar(findViewById(android.R.id.content), mensagens[0], Color.WHITE, Color.BLACK);
     }
 
