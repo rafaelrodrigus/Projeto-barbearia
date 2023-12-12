@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".TelaPerfil">
-    
+
     <View
         android:id="@+id/containerUser"
         android:layout_width="150dp"
@@ -112,7 +112,7 @@
     <ImageView
         android:layout_width="37dp"
         android:layout_height="26dp"
-        android:src="@drawable/wats"
+        android:src="@drawable/wats12"
         app:layout_constraintBottom_toBottomOf="@id/cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.815"
